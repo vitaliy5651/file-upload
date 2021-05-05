@@ -1,6 +1,6 @@
+const form = document.querySelector('#form');
 const fInput = document.getElementById('fileInput');
 const ul = document.querySelector('ul');
-
 
 fInput.addEventListener('change', (e) => {
     ul.innerHTML = '';
@@ -24,5 +24,25 @@ fInput.addEventListener('change', (e) => {
         });
         p.innerText = f.name;
     });
-    fInput.value = null;
+    //fInput.value = null;
+});
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const files = fInput.files;
+    const formData = new FormData();
+    for (let i = 0; i < files.length; i++) {
+        formData.append('files', files[i])
+    }
+
+    formData.append('desc', 'some text');
+
+    console.log(formData.get('desc'))
+
+    fetch('/send-form', {
+        method: 'POST',
+        body: formData,
+      }).then((response) => {
+        console.log(response)
+      })
 });

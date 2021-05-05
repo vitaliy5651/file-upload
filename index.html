@@ -12,8 +12,15 @@
       list-style: none;
     }
   </style>
-  <form>
-      <input type="file" name="fileInput" id="fileInput" multiple>
+  <form id="form" enctype="multipart/form-data">
+      <input 
+        type="file" 
+        name="files" 
+        id="fileInput" 
+        multiple
+        accept="image/jpeg,image/png"
+      >
+      <input type="submit" value="Send">
   </form>
   <ul>
 
